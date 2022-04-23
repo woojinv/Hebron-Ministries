@@ -10,8 +10,11 @@
         <p>Team Lead: {{ ministry.lead }}</p>
         <p>Description: {{ ministry.description }}</p>
         <p>Members: {{ ministry.number_of_members }}</p>
-        
+    </div>
 
+    <div class="card-action">
+        <a href="{% url 'ministries_update' ministry.id %}">Edit</a>
+        <a href="{% url 'ministries_delete' ministry.id %}">Delete</a>
     </div>
 
 </div>
