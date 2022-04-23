@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Ministry
 
 
@@ -16,3 +17,7 @@ def ministries_index(request):
 def ministries_detail(request, ministry_id):
     ministry = Ministry.objects.get(id=ministry_id)
     return render(request, 'ministries/detail.html', { 'ministry': ministry })
+
+class MinistryCreate(CreateView):
+    model = Ministry
+    fields = '__all__'
