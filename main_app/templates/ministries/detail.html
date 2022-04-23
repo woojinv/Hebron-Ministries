@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Ministry Details</h1>
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ ministry.name }}</span>
+        <p>Team Lead: {{ ministry.lead }}</p>
+        <p>Description: {{ ministry.description }}</p>
+        <p>Members: {{ ministry.number_of_members }}</p>
+        
+
+    </div>
+
+</div>
+{% endblock %}
+    

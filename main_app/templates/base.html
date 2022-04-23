@@ -18,8 +18,9 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Hebron EM</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-          <li><a href="/ministries">View All Ministries</a></li> 
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'ministries_create' %}">Add a Ministry</a></li>
+          <li><a href="{% url 'index' %}">View All Ministries</a></li> 
         </ul>
       </div>
     </nav>
