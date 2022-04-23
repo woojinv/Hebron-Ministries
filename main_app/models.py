@@ -7,3 +7,5 @@ class Ministry(models.Model):
     description = models.TextField(max_length=250)
     number_of_members = models.IntegerField()
 
+    def __str__(self):
+        return self.name
