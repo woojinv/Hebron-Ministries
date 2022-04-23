@@ -78,6 +78,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hebronministries',
+        'USER': 'woojin',
+        'PASSWORD': 'mypassword',
+        'HOST': '127.0.01',
+        'PORT': '5432',
     }
 }
 
