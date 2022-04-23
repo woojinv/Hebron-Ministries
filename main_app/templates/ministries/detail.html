@@ -4,19 +4,39 @@
 
 <h1>Ministry Details</h1>
 
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">{{ ministry.name }}</span>
-        <p>Team Lead: {{ ministry.lead }}</p>
-        <p>Description: {{ ministry.description }}</p>
-        <p>Members: {{ ministry.number_of_members }}</p>
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ ministry.name }}</span>
+                <p>Team Lead: {{ ministry.lead }}</p>
+                <p>Description: {{ ministry.description }}</p>
+                <p>Members: {{ ministry.number_of_members }}</p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'ministries_update' ministry.id %}">Edit</a>
+                <a href="{% url 'ministries_delete' ministry.id %}">Delete</a>
+            </div>
+        </div>
     </div>
 
-    <div class="card-action">
-        <a href="{% url 'ministries_update' ministry.id %}">Edit</a>
-        <a href="{% url 'ministries_delete' ministry.id %}">Delete</a>
+    <div class="col s6">
+        <table class="striped">
+            <thead>
+                <tr><th>Name</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+                {% for event in ministry.event_set.all %}
+                    <tr>
+                        <td>{{event.name}}</td>
+                        <td>{{event.date}}</td>
+                    </tr>
+                {% endfor %}   
+            </tbody>
+        </table>
     </div>
-
 </div>
+
 {% endblock %}
     
