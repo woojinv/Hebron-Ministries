@@ -22,6 +22,12 @@
     </div>
 
     <div class="col s6">
+        <form action="{% url 'add_event' ministry.id %}" method="post">
+            {% csrf_token %}
+            {{ event_form.as_p }}
+            <input type="submit" class="btn" value="Add Event">
+        </form>
+
         <table class="striped">
             <thead>
                 <tr><th>Name</th><th>Date</th></tr>
@@ -37,6 +43,16 @@
         </table>
     </div>
 </div>
+
+<script>
+    const dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+        form: 'yyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+</script>
 
 {% endblock %}
     
