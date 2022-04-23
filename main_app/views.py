@@ -12,3 +12,7 @@ def about(request):
 def ministries_index(request):
     ministries = Ministry.objects.all()
     return render(request, 'ministries/index.html', { 'ministries': ministries })
+
+def ministries_detail(request, ministry_id):
+    ministry = Ministry.objects.get(id=ministry_id)
+    return render(request, 'ministries/detail.html', { 'ministry': ministry })
