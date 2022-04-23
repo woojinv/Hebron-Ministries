@@ -9,4 +9,5 @@ urlpatterns = [
     path('ministries/create/', views.MinistryCreate.as_view(), name='ministries_create'),
     path('ministries/<int:pk>/update/', views.MinistryUpdate.as_view(), name='ministries_update'),
     path('ministries/<int:pk>/delete/', views.MinistryDelete.as_view(), name='ministries_delete'),
+    path('ministries/<int:ministry_id>/add_event/', views.add_event, name='add_event'),
 ]
