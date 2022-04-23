@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Ministry
 
 
@@ -21,3 +21,11 @@ def ministries_detail(request, ministry_id):
 class MinistryCreate(CreateView):
     model = Ministry
     fields = '__all__'
+
+class MinistryUpdate(UpdateView):
+    model = Ministry
+    fields = ['name', 'lead', 'description', 'number_of_members']
+
+class MinistryDelete(DeleteView):
+    model = Ministry
+    success_url = '/ministries/'

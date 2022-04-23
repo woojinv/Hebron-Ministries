@@ -13,3 +13,15 @@ class Ministry(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'ministry_id': self.id})
+
+
+class Event(models.Model):
+    name = models.CharField(max_length=100)
+    date = models.DateField()
+    description = models.TextField(max_length=250)
+    contact = models.CharField(max_length=100)
+
+    ministry = models.ForeignKey(Ministry, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name} on {self.date}"
