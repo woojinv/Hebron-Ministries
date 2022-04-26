@@ -8,6 +8,7 @@ class Ministry(models.Model):
     description = models.TextField(max_length=250)
     number_of_members = models.IntegerField()
 
+
     def __str__(self):
         return self.name
     
@@ -32,6 +33,7 @@ class Event(models.Model):
 
 class Member(models.Model):
     name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
     verse = models.TextField(max_length=250)
 
     ministry = models.ManyToManyField(Ministry)
