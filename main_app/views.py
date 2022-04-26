@@ -50,6 +50,9 @@ class MinistryDelete(DeleteView):
     success_url = '/ministries/'
 
 
+def members_index(request):
+    members = Member.objects.all()
+    return render(request, 'members/index.html', { 'members': members })
 
 
 class MemberCreate(CreateView):
