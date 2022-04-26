@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Ministry
+from .models import Ministry, Member
 from .forms import EventForm
 
 
@@ -48,3 +48,10 @@ class MinistryUpdate(UpdateView):
 class MinistryDelete(DeleteView):
     model = Ministry
     success_url = '/ministries/'
+
+
+
+
+class MemberCreate(CreateView):
+    model = Member
+    fields = '__all__'
