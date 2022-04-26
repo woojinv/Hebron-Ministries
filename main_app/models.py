@@ -28,3 +28,15 @@ class Event(models.Model):
 
     class Meta:
         ordering = ['date']
+
+
+class Member(models.Model):
+    name = models.CharField(max_length=50)
+    verse = models.TextField(max_length=250)
+
+    ministry = models.ManyToManyField(Ministry)
+
+    def __str__(self):
+        return self.name
+    
+    
