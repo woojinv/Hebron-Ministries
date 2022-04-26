@@ -36,8 +36,6 @@ class Member(models.Model):
     email = models.EmailField(max_length=50)
     verse = models.TextField(max_length=250)
 
-    ministry = models.ManyToManyField(Ministry)
-
     def __str__(self):
         return self.name
     
