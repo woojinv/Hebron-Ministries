@@ -34,7 +34,6 @@ class Event(models.Model):
 class Member(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    verse = models.TextField(max_length=250)
 
     def __str__(self):
         return self.name
