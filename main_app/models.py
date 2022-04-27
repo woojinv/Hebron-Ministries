@@ -39,7 +39,7 @@ class Member(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('index_members')
+        return reverse('members_index')
 
     
     
