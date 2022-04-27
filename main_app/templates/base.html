@@ -21,10 +21,13 @@
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'events_index' %}">Events</a></li>
+          <li><a href="{% url 'events_create' %}">Add an Event</a></li>
+          
+          <li><a href="{% url 'index' %}">Ministries</a></li>
           <li><a href="{% url 'ministries_create' %}">Add a Ministry</a></li>
-          <li><a href="{% url 'index' %}">View All Ministries</a></li>
+          <li><a href="{% url 'members_index' %}">Members</a></li>
           <li><a href="{% url 'members_create' %}">Add a Member</a></li>
-          <li><a href="{% url 'members_index' %}">View All Members</a></li>
         </ul>
       </div>
     </nav>
