@@ -6,6 +6,7 @@
     {% csrf_token %}
     {{ form.as_table }}
 
+    <input type="submit" value="Submit" class="btn">
 </form>
 
 <script>
@@ -16,6 +17,9 @@
         setDefaultDate: true,
         autoClose: true
     });
+
+    const ministryEl = document.getElementById('id_ministry');
+    M.FormSelect.init(ministryEl);
 </script>
     
 {% endblock content %}
