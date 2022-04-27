@@ -12,6 +12,7 @@ urlpatterns = [
     path('ministries/<int:ministry_id>/add_event/', views.add_event, name='add_event'),
     path('events/', views.events_index, name='events_index'),
     path('events/<int:event_id>/', views.events_detail, name='events_detail'),
+    path('events/<int:pk>/update/', views.EventUpdate.as_view(), name='events_update'),
     path('members/', views.members_index, name='members_index'),
     path('members/create/', views.MemberCreate.as_view(), name='members_create'),
     path('members/<int:member_id>/', views.members_detail, name='members_detail'),

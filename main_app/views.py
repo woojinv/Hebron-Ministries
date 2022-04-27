@@ -49,6 +49,11 @@ def events_detail(request, event_id):
     })
 
 
+class EventUpdate(UpdateView):
+    model = Event
+    fields = '__all__'
+
+
 
 class MinistryCreate(CreateView):
     model = Ministry
