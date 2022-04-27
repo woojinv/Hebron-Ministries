@@ -34,10 +34,15 @@
             </thead>
             <tbody>
                 {% for event in ministry.event_set.all %}
-                    <tr>
-                        <td>{{event.name}}</td>
-                        <td>{{event.date}}</td>
-                    </tr>
+                    
+                        <tr>
+                            
+                                <td><a href="{% url 'events_detail' event.id%}">{{event.name}}</a></td>
+                                <td><a href="{% url 'events_detail' event.id%}">{{event.date}}</a></td>
+                            
+                        </tr>                        
+                    
+
                 {% endfor %}   
             </tbody>
         </table>

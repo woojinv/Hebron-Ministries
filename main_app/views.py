@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Ministry, Member
+from .models import Ministry, Member, Event
 from .forms import EventForm
 
 
@@ -34,6 +34,19 @@ def add_event(request, ministry_id):
         new_event.ministry_id = ministry_id
         new_event.save()
     return redirect('detail', ministry_id=ministry_id)
+
+
+def events_index(request):
+    events = Event.objects.all()
+    return render(request, 'events/index.html', { 'events': events })
+
+
+
+def events_detail(request, event_id):
+    event = Event.objects.get(id=event_id)
+    return render(request, 'events/detail.html', {
+        'event': event 
+    })
 
 
 
