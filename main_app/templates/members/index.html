@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Member List</h1>
+
+{% for member in members %}
+<div class="card">
+    <a href="{% url 'members_detail' member.id %}">
+        <div class="card-content">
+            <span class="card-title">{{ member.name }}</span>
+            <p>Email: {{ member.email }}</p>
+
+        </div>        
+    </a>
+
+
+</div>
+{% endfor %}
+    
+    
+{% endblock content %}
+
