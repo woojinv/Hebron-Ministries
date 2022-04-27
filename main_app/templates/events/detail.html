@@ -16,7 +16,16 @@
         <a href="">Delete</a>
     </div>
 </div>
+
+<script>
+const dateEl = document.getElementById('id_date');
+M.datepicker.init(dateEl, {
+    form: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+});
+</script>
     
 {% endblock content %}
 
-    

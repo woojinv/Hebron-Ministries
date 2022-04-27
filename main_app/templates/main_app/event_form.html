@@ -2,7 +2,21 @@
 
 {% block content %}
 <h1>Update <span class="teal-text">{{ event.name }}</span></h1>
+<form action="">
+    {% csrf_token %}
+    {{ form.as_table }}
 
+</form>
+
+<script>
+    const dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+        form: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+</script>
     
 {% endblock content %}
     
