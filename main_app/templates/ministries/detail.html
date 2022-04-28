@@ -19,6 +19,15 @@
                 <a href="{% url 'ministries_delete' ministry.id %}">Delete</a>
             </div>
         </div>
+
+        {% for photo in ministry.photo_set.all %}
+            <img class="responsive-img card-panel" src="{{ photo.url }}">
+        {% empty %}
+            <div class="card-panel teal-text center-align" >No Photos Uploaded</div>
+        {% endfor %}
+            
+
+
     </div>
 
     <div class="col s6">
