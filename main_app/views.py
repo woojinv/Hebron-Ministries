@@ -17,11 +17,13 @@ def ministries_index(request):
 
 def ministries_detail(request, ministry_id):
     ministry = Ministry.objects.get(id=ministry_id)
+    members_not_in_ministry = Member.objects.exclude(id__in = ministry.members.all().values_list('id'))
     # instantiate EventForm to be rendered in the template
     event_form = EventForm()
     return render(request, 'ministries/detail.html', { 
         'ministry': ministry,
-        'event_form': event_form
+        'event_form': event_form,
+        'members': members_not_in_ministry
     })
 
 def add_event(request, ministry_id):
@@ -97,3 +99,7 @@ class MemberUpdate(UpdateView):
 class MemberDelete(DeleteView):
     model = Member
     success_url = '/members/'
+
+def assoc_member(request, ministry_id, member_id):
+    Ministry.objects.get(id=ministry_id).members.add(member_id)
+    return redirect('detail', ministry_id=ministry_id)
