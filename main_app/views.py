@@ -1,7 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Ministry, Member, Event
 from .forms import EventForm
+import uuid
+import boto3
+from .models import Ministry, Member, Event
+
+# "constant" variables
+S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
+BUCKET = 
 
 
 # Create your views here.
