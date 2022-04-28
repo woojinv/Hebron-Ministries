@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import EventForm
 import uuid
 import boto3
-from .models import Ministry, Member, Event
+from .models import Ministry, Member, Event, Photo
 
 # "constant" variables
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
@@ -124,3 +124,8 @@ def add_photo(request, ministry_id):
             # build the full url string
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
             # we can assign to ministry_id or ministry  (if you have a ministry object)
+            Photo.objects.create(url=url, ministry_id=ministry_id)
+        except: 
+            print('An error occurred uploading file to S3')
+    return redirect('detail', ministry_id=ministry_id)
+
