@@ -4,6 +4,8 @@ from .forms import EventForm
 import uuid
 import boto3
 from .models import Ministry, Member, Event, Photo
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 # "constant" variables
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
@@ -140,4 +142,29 @@ def add_photo(request, ministry_id):
         except: 
             print('An error occurred uploading file to S3')
     return redirect('detail', ministry_id=ministry_id)
+
+
+
+def signup(request):
+    error_message = ''
+    # on a get, lots render a template with a form
+
+    if request.method == 'POST':
+        # on a POST, lets signup the user and log them in    
+        # this is how to create a 'user' form object
+        # that includes the data from the browser
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            # this will add the user to the database
+            user = form.save()
+            # this is how we log a user in via code
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid credentials - please try again'
+    # A bad post or get request, so render signup.html with an empty form
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
+
 
