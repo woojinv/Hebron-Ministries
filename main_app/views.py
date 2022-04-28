@@ -7,7 +7,7 @@ from .models import Ministry, Member, Event
 
 # "constant" variables
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
-BUCKET = 
+BUCKET = 'hebronministries'
 
 
 # Create your views here.
@@ -109,3 +109,18 @@ class MemberDelete(DeleteView):
 def assoc_member(request, ministry_id, member_id):
     Ministry.objects.get(id=ministry_id).members.add(member_id)
     return redirect('detail', ministry_id=ministry_id)
+
+
+def add_photo(request, ministry_id):
+    # photo_file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try: 
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to ministry_id or ministry  (if you have a ministry object)
