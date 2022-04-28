@@ -22,4 +22,6 @@ urlpatterns = [
     path('members/<int:member_id>/', views.members_detail, name='members_detail'),
     path('members/<int:pk>/update/', views.MemberUpdate.as_view(), name='members_update'),
     path('members/<int:pk>/delete/', views.MemberDelete.as_view(), name='members_delete'),
+
+    path('accounts/signup/', views.signup, name='signup'),
 ]

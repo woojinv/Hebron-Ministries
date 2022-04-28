@@ -21,13 +21,19 @@
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'events_index' %}">Events</a></li>
-          <li><a href="{% url 'events_create' %}">Add an Event</a></li>
-          
-          <li><a href="{% url 'index' %}">Ministries</a></li>
-          <li><a href="{% url 'ministries_create' %}">Add a Ministry</a></li>
-          <li><a href="{% url 'members_index' %}">Members</a></li>
-          <li><a href="{% url 'members_create' %}">Add a Member</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'events_index' %}">Events</a></li>
+            <li><a href="{% url 'events_create' %}">Add an Event</a></li>
+            <li><a href="{% url 'index' %}">Ministries</a></li>
+            <li><a href="{% url 'ministries_create' %}">Add a Ministry</a></li>
+            <li><a href="{% url 'members_index' %}">Members</a></li>
+            <li><a href="{% url 'members_create' %}">Add a Member</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>          
+            <li><a href="{% url 'login' %}">Log In</a></li>
+
+          {% endif %}
         </ul>
       </div>
     </nav>
