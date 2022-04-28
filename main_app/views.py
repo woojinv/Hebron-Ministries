@@ -74,7 +74,19 @@ class EventDelete(DeleteView):
 
 class MinistryCreate(CreateView):
     model = Ministry
-    fields = '__all__'
+    fields = ['name', 'lead', 'description', 'number_of_members', 'members']
+
+    # this inherited method is called when a 
+    # valid ministry form is being submitted
+    def form_valid(self, form):
+        # assign the logged in user (self.request.user)
+        form.instance.user = self.request.user # form.instance is the ministry
+        # let the CreateView do it's job as usual
+        return super().form_valid(form)
+
+
+
+
 
 class MinistryUpdate(UpdateView):
     model = Ministry
