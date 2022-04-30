@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Ministry Details</h1>
+
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ ministry.name }}</span>
+                <p>Team Lead: {{ ministry.lead }}</p>
+                <p>Description: {{ ministry.description }}</p>
+                <p>Members: {{ ministry.number_of_members }}</p>
+            </div>
+
+            <div class="card-action">
+                <a href="{% url 'ministries_update' ministry.id %}">Edit</a>
+                <a href="{% url 'ministries_delete' ministry.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s6">
+        <form action="{% url 'add_event' ministry.id %}" method="post">
+            {% csrf_token %}
+            {{ event_form.as_p }}
+            <input type="submit" class="btn" value="Add Event">
+        </form>
+
+        <table class="striped">
+            <thead>
+                <tr><th>Name</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+                {% for event in ministry.event_set.all %}
+                    
+                        <tr>
+                            
+                                <td><a href="{% url 'events_detail' event.id%}">{{event.name}}</a></td>
+                                <td><a href="{% url 'events_detail' event.id%}">{{event.date}}</a></td>
+                            
+                        </tr>                        
+                    
+
+                {% endfor %}   
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col s6">
+        <h3>Meet the Members of {{ ministry.name }}</h3>
+        {% if ministry.members.count %}
+            {% for member in ministry.members.all %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ member.name }}</span>
+                        <p>{{ member.email }}</p>
+                    </div>
+                </div>    
+            {% endfor %}
+        {% else %}
+            <h5>No Members Yet!</h5>
+        {% endif %}
+    </div>
+
+    <div class="col s6">
+        <h3>Available Members</h3>
+        
+        {% if members.count %}
+            
+            {% for member in members.all %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ member.name }}</span>
+                    </div>
+                
+                    <div class="card-action">
+                        <form action="{% url 'assoc_member' ministry.id member.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Add</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+                
+        {% else %}
+            <h5>No Members Available to Add</h5>
+        {% endif %}
+            
+
+    </div>
+
+</div>
+
+
+<script>
+    const dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+        form: 'yyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+</script>
+
+{% endblock %}
+    
